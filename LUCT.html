@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUCT SMART CAMPUS NAVIGATION SYSTEM</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        #welcome-interface {
+            display: none;
+            text-align: center;
+        }
+        button {
+            font-size: 20px;
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+        }
+        #map-container {
+            width: 100%;
+        }
+        iframe {
+            width: 100%;
+            height: 650px;
+            border: 0;
+        }
+        @media only screen and (max-width: 768px) {
+            iframe {
+                height: 500px; /* Adjust height for mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Login Form -->
+<div  style="align-content: center; justify-content: center; display: flex; background-image: url('luct.png');">
+    <div id="login-form" style="align-content: center;">
+<h1>Log In </h1>
+<form>
+<label for="username">Username:</label>
+<input type="text" id="username" name="username" required><br><br>
+
+<label for="password">Password:</label>
+<input type="password" id="password" name="password" required><br><br>
+
+<input type="submit" value="Sign In">
+</form>
+    </div>
+    <button id="Visitor">Visitor</button>
+</div>
+
+<!-- Welcome Interface -->
+<div id="welcome-interface" style="background-image: url('luct.png');">
+    <h2>Welcome to LUCT SMART CAMPUS NAVIGATION SYSTEM</h2>
+    <button id="main-campus-btn">Main Campus</button>
+    <button id="mp-campus-btn">MP Campus</button>
+    <br><br>
+    <div id="map-container">
+        <iframe id="main-campus-map"   style="display: none;" href="https://www.mappedin.com/" title="Mappedin Map" name="Mappedin Map" scrolling="no" width="100%" height="650" frameborder="0" style="border:0" src="https://app.mappedin.com/map/663feb9d269972f02bf83b16?embedded=true"></iframe>
+        <iframe id="mp-campus-map" style="display: none;"  href="https://www.mappedin.com/" title="Mappedin Map" name="Mappedin Map" scrolling="no" width="100%" height="650" frameborder="0" style="border:0" src="https://app.mappedin.com/map/664e8bb98004177ee42bd039?embedded=true"></iframe>
+    </div>
+</div>
+
+<script>
+    // Function to show the welcome interface
+    function showWelcomeInterface() {
+        document.getElementById("login-form").style.display = "none";
+        document.getElementById("welcome-interface").style.display = "block";
+        document.getElementById("Visitor").style.display = "none";
+        
+    }
+
+    // Function to show Main Campus map
+    function showMainCampusMap() {
+        document.getElementById("mp-campus-map").style.display = "none";
+        document.getElementById("main-campus-map").style.display = "block";
+    }
+
+    // Function to show MP Campus map
+    function showMPCampusMap() {
+        document.getElementById("main-campus-map").style.display = "none";
+        document.getElementById("mp-campus-map").style.display = "block";
+    }
+
+    // Add event listener to Main Campus button
+    document.getElementById("main-campus-btn").addEventListener("click", showMainCampusMap);
+
+    // Add event listener to MP Campus button
+    document.getElementById("mp-campus-btn").addEventListener("click", showMPCampusMap);
+
+    document.getElementById("Visitor").addEventListener("click", showWelcomeInterface);
+
+    // Simulate login for visitors
+    document.querySelector("form").addEventListener("submit", function(event) {
+        event.preventDefault();
+        showWelcomeInterface();
+    });
+</script>
+
+</body>
+</html>
